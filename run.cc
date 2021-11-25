@@ -68,12 +68,22 @@ int main() {
   cout << "******************************************************" << endl;
   // create an object which holds data of experiment A
   Data datA("exp_A");
+  Data datB("exp_B");
+  Data datC("exp_C");
+  Data datD("exp_D");
 
   // here is the data from experiment A
   cout << "bin 27: from " << datA.binLow(27) << " to " << datA.binHigh(27)
        << endl;
   cout << "measurement of experiment A in bin 27: " << datA.measurement(27)
        << endl;
+  cout << "measurement of experiment B in bin 27: " << datB.measurement(27)
+       << endl;
+  cout << "measurement of experiment C in bin 27: " << datB.measurement(27)
+       << endl;
+  cout << "measurement of experiment D in bin 27: " << datB.measurement(27)
+       << endl;
+
 
   return 0;
 }
