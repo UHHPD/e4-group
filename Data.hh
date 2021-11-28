@@ -14,11 +14,12 @@ class Data {
   double binLow(int i) const { return m_bins[i]; }
   double binHigh(int i) const { return m_bins[i+1]; }
   double error(int i) const { return m_error[i]; }
+  int checkCompatibility(const Data& in, int n);
+  double chi_squared(std::vector<double> f);
 
  private:
   Data() {}  // disallow empty data set
   void assertSizes();
-  int checkCompatibility(const Data& in, int n);
   std::vector<double> m_data;
   std::vector<double> m_bins;
   std::vector<double> m_error;

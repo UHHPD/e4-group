@@ -5,6 +5,7 @@
 #include <cassert>
 #include <stdexcept>
 #include <cmath>
+#include <vector>
 
 using namespace std;
 
@@ -48,7 +49,7 @@ Data::Data(const std::string& filename) {
 void Data::assertSizes() { assert(m_data.size() + 1 == m_bins.size()); }
 int Data::checkCompatibility(const Data& in, int n){
     int k=0;
-    for(int i=0;i<m_data.size()-1;i++){
+    for(int i=0;i<m_data.size();i++){
         double diff =sqrt(pow(m_data[i]-in.measurement(i),2));
         double error=sqrt(pow(m_error[i],2)+pow(in.error(i),2));
         if (diff > n*error){
@@ -58,3 +59,13 @@ int Data::checkCompatibility(const Data& in, int n){
     }
     return k;
 }
+double Data::chi_squared(std::vector<double> f){
+  double chi_square=0;
+  for(int i=0;i<m_data.size();i++){
+    chi_square=chi_square+pow(m_data[i]-f[i],2)/pow(m_error[i],2);
+  }
+  chi_square=chi_square/52;
+  return chi_square;
+}
+
+
